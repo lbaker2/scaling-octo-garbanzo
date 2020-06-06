@@ -16,6 +16,7 @@ before_install:
   - gcloud container clusters get-credentials scaling-octo-garbanzo
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t lbakerjs/scaling-octo-garbanzo-client-dev -f ./client/Dockerfile.dev ./client
+  - rm service-account.json
 
 script:
   - docker run -e CI=true lbakerjs/scaling-octo-garbanzo-client-dev npm run test
